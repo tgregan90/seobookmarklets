@@ -8,8 +8,8 @@ urlsToCheck.forEach(url => {
     let nodes = document.querySelectorAll(string);
     nodes.forEach(node=>{
         queue.push(node);
-    }) 
-})
+    });
+});
 
 function decorator(link){
     if(link.querySelector(".foundURL")){
@@ -42,6 +42,6 @@ function decorator(link){
 
 queue.forEach(node => {
     decorator(node);
-})
+});
 
 console.log(queue);
