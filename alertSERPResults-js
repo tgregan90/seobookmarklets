@@ -1,0 +1,15 @@
+let values = [];
+let nodes = [];
+nodes = document.querySelectorAll("div.g > .rc > .r");
+nodes.forEach((node,index)=>{
+    const obj = {}
+    obj.position = index + 1;
+    obj.url = node.querySelector("a").getAttribute("href");
+    values.push(obj);
+})
+let lineItem = "";
+values.forEach(item=>{
+ lineItem += `${item.position}: ${item.url},
+`
+})
+alert(lineItem);
