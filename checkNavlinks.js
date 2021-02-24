@@ -1,4 +1,4 @@
-let links = document.querySelectorAll(".top-navigation-container a");
+let links = document.querySelectorAll("nav a");
 async function processLinks(linksArray){
     for (const link of linksArray){
         await testLink(link);
