@@ -1,8 +1,23 @@
 let links = document.querySelectorAll("nav a");
+let arrayOfBrokenURLs = [];
+let consoleMessage = [];
+let copyMessage = [];
+
 async function processLinks(linksArray){
     for (const link of linksArray){
-        await testLink(link);
+        if(link.href){
+            await testLink(link);
+        }
     }
+    if(arrayOfBrokenURLs.length){
+        arrayOfBrokenURLs.forEach(brokenLink => {
+            copyMessage.push(`\n Anchor: ${brokenLink.innerText} - Href: ${brokenLink.href} `);
+            consoleMessage.push(`\n Anchor: ${brokenLink.innerText} - Href: ${brokenLink.href}`);
+        });
+        console.log(consoleMessage);
+        createButton();
+    }
+
 }
 
 async function testLink(link){
@@ -13,16 +28,31 @@ try{
     method  : 'GET', 
     headers : headers})
       .then(response=>{
-    console.log(response);
-    console.log(response.ok);
      if(response.ok && response.redirected == false ){
         link.style.color = "green"
     } else {
         link.style.color = "red"
+        arrayOfBrokenURLs.push(link);
     }
 
   })}catch(e){
     console.log(e);
 }
+}
+
+let copyToClipboard = str => {
+  const el = document.createElement('textarea');
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  console.log("Broken Links Copied");
+};
+
+function createButton(){
+    const copyButton = `<div><button style="display:block; margin-left:auto; margin-top:20px;" type="submit" onclick="copyToClipboard(copyMessage);">Copy</button</div>`;
+    document.body.insertAdjacentHTML("afterbegin",copyButton);
+
 }
 processLinks(links);
