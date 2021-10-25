@@ -17,3 +17,6 @@ When executed a drawer will slide from the top exposing meta information about t
 
 ## Scroll to text
 When you want to share a page and drop the user to a specific line of text, this will ask for text and then copy to your clipboad the links with the text scroll fragment
+
+#no-follow-highlighter
+When executed it will add a red dashed border to all nofollowed links on a page
